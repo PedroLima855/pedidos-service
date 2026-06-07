@@ -101,9 +101,14 @@ spring.datasource.username=postgres
 spring.datasource.password=postgres
 ```
 
-### Executar
+### Executar (local)
 ```bash
 ./mvnw spring-boot:run
+```
+
+### Executar (Docker)
+```bash
+docker compose up --build
 ```
 
 > O Flyway cria as tabelas automaticamente na primeira execução.
@@ -224,6 +229,52 @@ Exemplo de log gerado:
 ```
 [NOTIFICAÇÃO] Pedido #1 teve status alterado: PENDENTE -> APROVADO
 [MENSAGERIA] Mensagem enviada para fila de notificações - Pedido #1
+```
+
+---
+
+## 🧪 Testes Automatizados
+
+O projeto possui cobertura completa com **36 testes** entre unitários e de integração.
+
+### Testes Unitários
+- `ParceiroServiceTest` — criação, busca e listagem de parceiros
+- `PedidoServiceTest` — criação de pedidos, validação de crédito, transições de status, cancelamento e estorno
+
+### Testes de Integração
+- `ParceiroControllerIntegrationTest` — endpoints REST de parceiros com validações
+- `PedidoControllerIntegrationTest` — fluxo completo de pedidos (criação, aprovação, cancelamento, estorno de crédito)
+
+### Executar
+```bash
+./mvnw test
+```
+
+> Os testes de integração usam banco H2 em memória, não precisam de PostgreSQL rodando.
+
+---
+
+## 🐳 Docker Compose
+
+O projeto inclui `docker-compose.yml` para subir toda a aplicação com um único comando.
+
+### Pré-requisito
+- Docker e Docker Compose instalados
+
+### Executar
+```bash
+docker compose up --build
+```
+
+Isso irá:
+1. Subir o **PostgreSQL 15** com o banco `pdd_dados` criado automaticamente
+2. Fazer o **build** da aplicação Java
+3. Subir a **API** na porta `8080` (aguarda o banco estar pronto via healthcheck)
+4. O **Flyway** cria as tabelas automaticamente na primeira execução
+
+### Parar
+```bash
+docker compose down -v
 ```
 
 ---
