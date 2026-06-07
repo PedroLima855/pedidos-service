@@ -22,7 +22,7 @@ services:
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/pdd_dados
       SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_DATASOURCE_PASSWORD: 123456
       SPRING_DOCKER_COMPOSE_ENABLED: "false"
       SPRING_FLYWAY_ENABLED: "true"
     depends_on:

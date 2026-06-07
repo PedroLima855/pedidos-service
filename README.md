@@ -98,7 +98,7 @@ CREATE DATABASE pdd_dados;
 ```properties
 spring.datasource.url=jdbc:postgresql://localhost:5432/pdd_dados
 spring.datasource.username=postgres
-spring.datasource.password=postgres
+spring.datasource.password=123456
 ```
 
 ### Executar (local)
